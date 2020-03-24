@@ -4,7 +4,7 @@ Prototype of a routing algorithm to share loads between trusts in the UK. Specif
 
 Compiling via console:
 
-> gfortran -c loadsharing_module.f90
+\texttt{gfortran -c loadsharing_module.f90}
 
 > gfortran loadsharing_poc.f90 loadsharing_module.o
 
