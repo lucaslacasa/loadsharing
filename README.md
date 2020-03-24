@@ -4,9 +4,9 @@ Prototype of a routing algorithm to share loads between trusts in the UK. Specif
 
 Compiling via console:
 
-$ gfortran -c loadsharing_module.f90}
-$ gfortran loadsharing_poc.f90 loadsharing_module.o
-$ ./a.out
+gfortran -c loadsharing_module.f90}
+gfortran loadsharing_poc.f90 loadsharing_module.o
+./a.out
 
 Description of the code and algorithm:
 - The code takes as an input the projected ICU demand at the trust level.
