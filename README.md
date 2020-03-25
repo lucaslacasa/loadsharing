@@ -23,6 +23,9 @@ Once this is done, the resulting net global stress is computed.
 
 Comment: as it stands, the algorithm inputs a constant ICU demand per trust (=20), this needs to be updated with actual estimated ICU demand.
 
+For any questions, contact me at l.lacasa@qmul.ac.uk
+
+-- Lucas Lacasa
 
 
 
