@@ -1,15 +1,18 @@
-# loadsharing algorithm and implementation
+# loadsharing algorithms and implementations
 
 This is a Fortran90 prototype of a routing algorithm to share loads between trusts in the UK. Specifically designed to serve as an algorithm for ICU patients loadshare, but flexible enought to be re-used for other resource sharing endeavour.
 
-Version 1 -- Compiling via console:
+## Version 1 
 
+### Compiling via console:
 
-+ gfortran -c loadsharing_module.f90
-+ gfortran loadsharing_poc.f90 loadsharing_module.o
-+ ./a.out
+```
+gfortran -c loadsharing_module.f90
+gfortran loadsharing_poc.f90 loadsharing_module.o
+./a.out
+```
 
-Description of the code flow and algorithm (version 1):
+### Description of the code flow and algorithm (version 1):
 - The code takes as an input the projected ICU demand at the trust level.
 This quantity is estimated for each local authority code based on a complex dynamical model (or estimated otherwise from real data), and then aggregated at the trust level (each trust corresponds to a set of hospitals). This is an input to the model and thus not estimated by the algorithm.
 - The projected ICU demand is compared with the baseline number of available ICU beds for each trust, and from this a local stress level is extracted. 
@@ -20,17 +23,33 @@ If more than one receptors are available, the algorithm selects the destination 
 Once this is done, the resulting net global stress is computed.
 - the algorithm makes 100,000 independent realisations of this process. In each of the realisations different stochastic choices are made for the transfer in each collapsed trust. Each realisation has an attached net global stress reduction, and the algorithm finally selects the best one (the one that offers the largest reduction), and performs the changes.
 
-Version 2 -- Compiling via console:
+## Version 2 
 
+### Compiling via console:
 
-+ gfortran -c loadsharing_module.f90
-+ gfortran loadsharing_poc2.f90 loadsharing_module.o
-+ ./a.out
+```
+gfortran -c loadsharing_module.f90
+gfortran loadsharing_poc2.f90 loadsharing_module.o
+./a.out
+```
 
-Description of version 2:
+### Description of version 2:
 This is like version 1 with an additional property: nodes can now distribute loads to more than one receptor. The distribution is done sequentially among its neighborohood (k=4) and the program asks the user the maximum number of iterations. In each iteration, any of the 4 possible receptors with available capacity is selected.
 
-Comment: as it stands, the algorithms input a constant ICU demand per trust (=20), this needs to be updated with actual estimated ICU demand.
+
+## Version 3 
+
+### Compiling via console:
+
+```
+gfortran -c loadsharing_module.f90
+gfortran loadsharing_poc3.f90 loadsharing_module.o
+./a.out
+```
+
+### Description of version 3:
+This is tailored to tackle the example of Spain at autonomous communnities level. It builds on version 2 and in this case the user also needs to type via terminal the type of network (4-regular network or contact network) used for the load sharing.
+
 
 For any questions, contact me at l.lacasa@qmul.ac.uk
 
